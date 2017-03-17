@@ -9,3 +9,4 @@ build:
   - php --version
   - which phpunit
   - phpunit --version
+  - php -m
