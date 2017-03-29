@@ -7,6 +7,17 @@ build:
  ci:
   - which php
   - php --version
+
   - which phpunit
   - phpunit --version
+  
+  - echo "extension=amqp.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini
+  - echo "extension=memcached.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini
+  - echo "extension=zmq.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini
+  - echo "extension=redis.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini
+  
+  - if [ "$(phpenv global)" == "5.6" ]; then echo "extension=memcache.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini; fi
+  - if [ "$(phpenv global)" == "5.6" ]; then echo "extension=mongo.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini; fi
+  - if [ "$(phpenv global)" == "7.0" -o "$(phpenv global)" == "7.1" ]; then echo "extension=mongodb.so" >> /root/.phpenv/versions/$(phpenv global)/etc/php.ini; fi
+  
   - php -m
